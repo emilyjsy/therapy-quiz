@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가족치료 시험 대비</title>
+<style>
+:root{--bg:#f5f4f0;--card:#fff;--border:#e2dfd8;--border2:#ccc9c0;--text:#18170f;--text2:#5c5a52;--text3:#9c9a92;--accent:#3354d4;--abg:#edf0fc;--green:#0a6644;--gbg:#e0f3ec;--gbd:#4db88a;--red:#7a1f1f;--rbg:#fce8e8;--rbd:#e88a8a;--amber:#6b3a06;--ambg:#fdf0db;--ambd:#f0b84a;--r:12px;--rs:7px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:2rem 1rem 5rem}
+.wrap{max-width:740px;margin:0 auto}
+.header{text-align:center;margin-bottom:2rem}
+.header h1{font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:5px}
+.header p{font-size:13px;color:var(--text2)}
+.topbar{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;margin-bottom:1.4rem}
+.tg{display:flex;flex-direction:column;gap:4px;flex:1;min-width:130px}
+.tg label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.4px}
+select{padding:8px 10px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--bg);color:var(--text);font-size:14px;cursor:pointer}
+select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.start-btn{padding:10px 22px;border-radius:var(--rs);border:none;background:var(--accent);color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.start-btn:hover{opacity:.85}
+.scorebar{display:flex;align-items:center;gap:10px;padding:9px 15px;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:1.2rem;font-size:13px;color:var(--text2)}
+.sc-num{font-size:17px;font-weight:700;color:var(--text)}
+.sc-pct{font-size:12px;color:var(--text3)}
+.retry-btn{margin-left:auto;padding:4px 11px;border-radius:var(--rs);border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer}
+.retry-btn:hover{background:var(--bg)}
+.sec-label{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin:1.6rem 0 .7rem;padding-left:2px}
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem 1.4rem;margin-bottom:.9rem}
+.qmeta{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.qn{font-size:12px;font-weight:700;color:var(--text3)}
+.badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.b-mc{background:#edf0fc;color:#1a3aaa}
+.b-fill{background:#fdf0db;color:#7a4200}
+.b-desc{background:#e8f5e0;color:#2a6020}
+.qtext{font-size:15px;font-weight:600;line-height:1.7;margin-bottom:1rem}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{text-align:left;padding:9px 13px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--bg);color:var(--text);cursor:pointer;font-size:14px;line-height:1.5;transition:background .1s,border-color .1s}
+.opt:hover:not(:disabled){background:var(--abg);border-color:var(--accent)}
+.opt-ok{background:var(--gbg)!important;border-color:var(--gbd)!important;color:var(--green)!important;font-weight:600}
+.opt-bad{background:var(--rbg)!important;border-color:var(--rbd)!important;color:var(--red)!important}
+.ans-input{width:100%;padding:9px 12px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;margin-bottom:6px}
+.ans-input:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea.ans-input{resize:vertical;min-height:80px}
+.sub-btn{margin-top:4px;padding:8px 16px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--bg);color:var(--text);font-size:13px;font-weight:700;cursor:pointer}
+.sub-btn:hover:not(:disabled){background:var(--abg);border-color:var(--accent);color:var(--accent)}
+.sub-btn:disabled{opacity:.45;cursor:not-allowed}
+.fb{margin-top:11px;padding:10px 13px;border-radius:var(--rs);font-size:13.5px;line-height:1.7;border:1px solid;display:none}
+.fb-ok{background:var(--gbg);color:var(--green);border-color:var(--gbd)}
+.fb-bad{background:var(--rbg);color:var(--red);border-color:var(--rbd)}
+.fb-mid{background:var(--ambg);color:var(--amber);border-color:var(--ambd)}
+.empty{text-align:center;padding:4rem 1rem;color:var(--text3)}
+.empty .ico{font-size:38px;margin-bottom:12px}
+@media(max-width:520px){.topbar{flex-direction:column}.start-btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header"><h1>📖 가족치료 시험 대비</h1><p>8장 정신역동 · 9장 인지행동 | 실제 시험 유형 (4지선다 18 + 빈칸 2 + 서술 2)</p></div>
+<div class="topbar">
+  <div class="tg"><label>시험 범위</label>
+    <select id="sel-topic"><option value="all">전체 (8장+9장)</option><option value="ch8">8장만 — 정신역동</option><option value="ch9">9장만 — 인지행동</option></select>
+  </div>
+  <div class="tg"><label>문제 세트</label>
+    <select id="sel-set"><option value="rand">랜덤 1세트 (22문제)</option><option value="all">전체 문제 보기</option></select>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">🎲 시작하기</button>
+</div>
+<div id="score-area" style="display:none">
+  <div class="scorebar"><span>점수</span><span class="sc-num" id="sc-num">0 / 0</span><span class="sc-pct" id="sc-pct"></span><button class="retry-btn" onclick="startQuiz()">다시 풀기</button></div>
+</div>
+<div id="quiz-area"><div class="empty"><div class="ico">🎓</div><p>범위와 세트를 선택하고<br><strong>시작하기</strong>를 눌러줘!</p></div></div>
+</div>
+<script>
+var MC=[
+{ch:"ch8",q:"전이(transference)에 대한 설명으로 옳은 것은?",opts:["① 치료자가 내담자에게 자신의 감정을 투사하는 것","② 내담자가 치료자에게 과거 중요한 관계의 감정·기대·패턴을 무의식적으로 옮겨오는 것","③ 가족 구성원이 서로의 역할을 바꾸는 것","④ 치료자가 내담자의 비합리적 신념을 수정하는 것"],ans:1,ex:"전이는 내담자가 치료자에게 과거 중요한 관계에서 형성된 감정·기대·관계 패턴을 무의식적으로 옮겨오는 것이다. 치료자의 무의식적 반응은 역전이이다."},
+{ch:"ch8",q:"역전이(countertransference)를 가장 바르게 설명한 것은?",opts:["① 내담자가 치료자에게 과거 관계 패턴을 옮기는 것","② 치료자가 내담자에게 자신의 무의식적 감정이나 반응을 느끼고 반응하는 것","③ 부부가 서로 투사를 주고받는 상호적 과정","④ 아동이 부모의 특성을 내면화하는 과정"],ans:1,ex:"역전이는 치료자가 내담자에게 자신의 무의식적 감정이나 반응을 느끼고 반응하는 것이다. 전이와 방향이 반대이므로 혼동하지 않도록 주의한다."},
+{ch:"ch8",q:"투사(projection)의 기능으로 옳은 것은?",opts:["① 자신의 불편한 감정·특성을 인식하지 않고 타인에게 돌려 지각하는 무의식적 방어기제","② 타인의 특성을 자아의 일부로 흡수하는 과정","③ 상대방이 실제로 투사된 역할을 하도록 유도하는 관계적 과정","④ 타인을 전적으로 좋거나 나쁜 존재로 이분화하는 것"],ans:0,ex:"투사는 자신의 감정·생각·특성을 스스로 인식하지 않고 타인에게 돌려 지각하는 무의식적 방어기제이다. 현실지각을 왜곡하여 관계 오해를 초래할 수 있다."},
+{ch:"ch8",q:"투사(projection)와 투사적 동일시(projective identification)의 차이로 옳은 것은?",opts:["① 투사는 의식적, 투사적 동일시는 무의식적 과정이다","② 투사적 동일시는 상대방이 실제로 투사된 내용에 맞게 행동하도록 관계가 조직된다","③ 투사는 가족 내에서만, 투사적 동일시는 치료 장면에서만 나타난다","④ 투사는 방어기제가 아니지만 투사적 동일시는 방어기제이다"],ans:1,ex:"단순 투사는 자신의 속성을 타인에게 귀인하는 것이지만, 투사적 동일시는 상대방이 실제로 그 역할을 수행하도록 관계가 조직되어 자기충족적 순환이 형성된다."},
+{ch:"ch8",q:"분열(splitting)이 가족 역동에 미치는 영향으로 옳은 것은?",opts:["① 가족의 결속력과 응집성을 높인다","② 가족 내 양극화를 초래하고 경직된 역할 패턴을 강화한다","③ 개별화와 분화를 촉진한다","④ 가족 의사소통을 개방적으로 만든다"],ans:1,ex:"분열은 가족 안에서 '문제아 vs 희생자' 같은 양극화를 만들고 경직된 역할과 반복적 갈등을 강화한다. 치료는 긍정·부정 측면의 통합을 돕는다."},
+{ch:"ch8",q:"내사(introjection)에 대한 설명으로 옳은 것은?",opts:["① 자신의 감정을 타인에게 귀인하는 것","② 타인(특히 양육자)의 특성을 무의식적으로 흡수하여 자아의 일부로 내면화하는 것","③ 상대방이 투사된 내용에 맞게 행동하게 만드는 것","④ 치료자에게 과거 관계 패턴을 옮겨오는 것"],ans:1,ex:"내사는 타인의 태도·특성·가치를 무의식적으로 흡수하여 자신의 자아 개념의 일부로 내면화하는 과정이다."},
+{ch:"ch8",q:"대상관계이론에서 '대상(object)'이 의미하는 것은?",opts:["① 치료 목표가 되는 문제 행동","② 경험과 기대를 통해 형성된 자기와 타인에 대한 심리적 이미지(내면화된 표상)","③ 가족 체계 내의 역할","④ 치료자가 사용하는 기법과 도구"],ans:1,ex:"대상(object)은 실제 외부 인물이 아니라 초기 경험을 통해 내면화된 자기·타인에 대한 심리적 이미지를 뜻한다."},
+{ch:"ch8",q:"거짓자기(false self)가 형성되는 원인으로 가장 적절한 것은?",opts:["① 지나친 강화와 보상으로 행동이 고착된 경우","② 자신의 감정이 충분히 인정받지 못해 타인의 인정을 얻기 위해 진정한 모습을 숨기는 경우","③ 역기능적 도식이 원가족에서 형성된 경우","④ 비합리적 신념이 반복 강화된 경우"],ans:1,ex:"Winnicott의 거짓자기는 의존 욕구가 충족되지 않거나 감정이 인정받지 못할 때, 타인의 인정을 얻기 위해 진짜 감정과 욕구를 숨기면서 형성된다."},
+{ch:"ch8",q:"정신분석적 가족치료에서 '치료자의 역할'로 옳은 것은?",opts:["① 가족 상호작용을 재구성하는 촉진자","② 순환적 질문으로 패턴을 드러내는 중재자","③ 무의식을 해석하고 통찰을 돕는 해석자","④ 강화 조건을 분석하여 행동을 수정하는 코치"],ans:2,ex:"정신분석적 접근에서 치료자는 해석자(interpreter)로서 내담자의 무의식적 갈등·전이·방어기제를 해석하고 통찰을 돕는 역할을 한다."},
+{ch:"ch8",q:"Winnicott의 '충분히 좋은 어머니(good-enough mothering)'의 핵심 기능은?",opts:["① 아이의 모든 욕구를 즉각적으로 충족시킨다","② 아이가 분리-개별화를 이루고 자신만의 정체성을 형성할 수 있도록 안전한 환경을 제공한다","③ 아이에게 비합리적 신념을 교정해 준다","④ 아이의 행동을 강화와 처벌로 조절한다"],ans:1,ex:"충분히 좋은 어머니는 완벽한 양육이 아니라 아이가 안전하게 탐색하고 분리-개별화를 이룰 수 있는 충분히 안전한 환경을 제공하는 것이다."},
+{ch:"ch8",q:"상호 투사적 동일시에서 갈등이 반복되는 이유는?",opts:["① 두 사람이 서로의 문제를 솔직하게 인정하기 때문에","② 각자의 투사가 행동화되어 서로의 믿음이 확인되는 자기강화적 순환이 형성되기 때문에","③ 치료자가 개입하지 않아서","④ 두 사람의 강화 이력이 다르기 때문에"],ans:1,ex:"상호 투사적 동일시에서 A·B 각자의 믿음이 상대의 행동화를 통해 확인되면서 자기강화적 순환이 형성되고, 갈등은 해결보다 반복의 방향으로 굳어진다."},
+{ch:"ch8",q:"분리-개별화(separation-individuation)에 대한 설명으로 옳은 것은?",opts:["① 아이가 부모로부터 완전히 독립하여 관계를 끊는 것","② 애착을 잃지 않으면서도 자율성을 키워가는 건강한 발달 과정","③ 부모가 자녀에게 독립을 강요하는 양육 방식","④ 치료를 통해 가족 구성원의 역할을 재분배하는 것"],ans:1,ex:"분리-개별화는 Mahler가 제시한 개념으로, 건강한 발달은 애착을 잃는 것이 아니라 애착 속에서 자율성을 키우는 것이다."},
+{ch:"ch8",q:"정신분석적 가족치료의 치료 목표로 옳은 것은?",opts:["① 현재의 의사소통 패턴을 즉시 변화시키는 것","② 강화 조건을 수정하여 문제 행동을 제거하는 것","③ 개별화·분화를 촉진하고 무의식적 제약에서 자유로워지도록 돕는 것","④ 비합리적 신념을 합리적 신념으로 교체하는 것"],ans:2,ex:"정신분석적 가족치료의 핵심 목표는 개별화와 분화 촉진, 무의식적 제약에서의 자유, 분리되었던 자기의 부분들을 통합하는 것이다."},
+{ch:"ch8",q:"반영(mirroring)의 기능으로 옳은 것은?",opts:["① 아이에게 이상적 행동 모델을 제시하는 것","② 아이의 내적 경험을 인정하고 공감하여 안정적 자아 형성을 돕는 것","③ 아이의 잘못된 행동을 즉시 교정하는 것","④ 아이와 부모 간의 경계를 명확히 하는 것"],ans:1,ex:"반영은 '네가 어떻게 느끼는지 알아'처럼 아이의 감정을 인정·공감하는 것으로, 이상화 모델과 함께 통합된 자아 형성의 핵심 요소이다."},
+{ch:"ch8",q:"Klein이 설명한 개념으로 옳게 묶인 것은?",opts:["① 참자기·거짓자기","② 투사적 동일시·분열","③ 분리-개별화·이상화","④ 전이·역전이"],ans:1,ex:"Melanie Klein은 투사적 동일시(projective identification)와 분열(splitting)을 포함한 초기 불안과 방어 개념을 발전시켰다."},
+{ch:"ch8",q:"Henry Dicks가 대상관계이론을 적용하여 부부 문제를 어떻게 바라보았는가?",opts:["① 부부 문제는 잘못된 강화 패턴의 결과이다","② 부부 문제는 현재 사건과 오래된 감정 시나리오의 재연이다","③ 부부 문제는 비합리적 신념에서 비롯된다","④ 부부 문제는 의사소통 기술 부족으로 발생한다"],ans:1,ex:"Henry Dicks는 1960년대에 부부 문제를 현재 사건과 오래된 감정 시나리오의 재연으로 보고 대상관계이론을 부부 갈등 치료에 적용하였다."},
+{ch:"ch8",q:"Freud의 정신분석 이론이 가족치료에 직접 적용되기 어려웠던 이유는?",opts:["① 치료 효과가 과학적으로 검증되지 않았기 때문에","② Freud가 개인의 intrapsychic 과정에 초점을 두고 의도적으로 가족을 치료에서 제외했기 때문에","③ 치료 비용이 지나치게 높아 접근이 어려웠기 때문에","④ 가족치료의 개념 자체가 Freud 시대에 존재하지 않았기 때문에"],ans:1,ex:"Freud는 개인의 내면적(intrapsychic) 과정에 초점을 둔 치료를 설계하였으며 의도적으로 가족을 치료 대상에서 제외하였다."},
+{ch:"ch8",q:"1980년대 이후 가족치료에서 다시 주목받은 이론으로 옳은 것은?",opts:["① 행동주의이론과 사회학습이론","② 구조주의이론과 전략적이론","③ 대상관계이론과 자기심리학","④ 인지이론과 사회교환이론"],ans:2,ex:"1980년대 이후 무의식과 초기관계 경험이 다시 중요하게 부각되면서 대상관계이론과 자기심리학이 가족치료에서 재주목받았다."},
+{ch:"ch8",q:"전이가 치료 장면에서 갖는 임상적 의미로 옳은 것은?",opts:["① 전이는 치료를 방해하므로 즉시 차단해야 한다","② 전이는 내담자의 과거 관계 패턴을 이해하는 중요한 자료가 된다","③ 전이는 치료자의 역전이로 인해 발생한다","④ 전이는 인지행동치료에서만 활용되는 개념이다"],ans:1,ex:"정신분석적 치료에서 전이는 내담자의 무의식적 기대·관계 패턴을 직접 관찰할 수 있는 중요한 치료적 자료로, 적절한 해석을 통해 통찰을 촉진할 수 있다."},
+{ch:"ch8",q:"투사적 동일시의 자기충족적 순환을 옳게 설명한 것은?",opts:["① A가 B에게 '넌 화를 잘 내'라고 투사→B가 실제로 분노→A의 믿음이 확인됨","② A가 B에게 '넌 화를 잘 내'라고 투사→B가 차분해짐→갈등 해소","③ A가 B에게 투사→치료자가 개입→B의 행동 변화","④ A가 B에게 투사→B가 투사를 인식→관계 개선"],ans:0,ex:"투사적 동일시에서 A가 자신의 공격성을 B에게 투사하고 자극하면, B가 실제로 분노하여 A의 믿음이 확인되는 자기강화적 순환이 형성된다."},
+{ch:"ch8",q:"역전이를 임상에서 어떻게 활용할 수 있는가?",opts:["① 역전이는 완전히 억압해야 한다","② 역전이를 인식·분석하면 내담자의 무의식적 관계 패턴을 이해하는 자료로 활용 가능하다","③ 역전이는 내담자에게 즉각 공개해야 한다","④ 역전이는 치료자의 개인 문제이므로 혼자 해결해야 한다"],ans:1,ex:"현대 정신분석에서 역전이는 내담자의 무의식적 과정을 이해하는 중요한 자료로 활용될 수 있다. 슈퍼비전을 통해 적절히 다루는 것이 권장된다."},
+{ch:"ch8",q:"분열(splitting)이 형성되는 주요 원인으로 옳은 것은?",opts:["① 지나치게 일관된 양육 환경","② 양육자가 일관되지 않거나 방임적이거나 정서적으로 이용 가능하지 않을 때","③ 과도한 강화로 인한 행동 고착","④ 비합리적 신념의 반복 학습"],ans:1,ex:"분열은 양육자가 일관되지 않거나 방임적이거나 정서적으로 이용 가능하지 않을 때 어린 시절에 형성되는 방어기제이다."},
+{ch:"ch8",q:"투사가 관계에서 오해를 만드는 이유는?",opts:["① 투사한 사람이 의도적으로 상대를 속이기 때문에","② 자신의 감정·생각을 타인에게 돌려 지각하여 현실을 왜곡하기 때문에","③ 상대방이 실제로 그 역할을 거부하기 때문에","④ 치료자가 개입하지 않기 때문에"],ans:1,ex:"투사는 자신이 인정하기 어려운 감정·욕구를 타인이 가진 것처럼 느끼고 해석하는 방어기제로, 현실지각을 왜곡하여 관계에서 오해를 초래한다."},
+{ch:"ch8",q:"정신분석 접근의 '시간 지향성'으로 옳은 것은?",opts:["① 현재 중심(here-and-now)","② 과거 중심(특히 어린 시절)","③ 미래 지향","④ 시간에 구애받지 않음"],ans:1,ex:"정신분석적 접근은 과거(특히 어린 시절)를 중심으로 무의식과 초기 경험에 초점을 둔다. 체계 접근은 현재(here-and-now)가 중심이다."},
+{ch:"ch8",q:"정신분석적 가족치료의 주요 기법으로 옳게 묶인 것은?",opts:["① 순환적 질문·재구성·역할 변화","② 경청·공감·해석·분석적 중립성","③ 조형·토큰 경제·유관계약","④ 소크라테스식 질문·인지 재구조화·행동 계약"],ans:1,ex:"정신분석적 가족치료의 기본 기법은 경청(listening), 공감(empathy), 해석(interpretation), 분석적 중립성(analytic neutrality)이다."},
+{ch:"ch9",q:"Ellis의 ABC 모형에서 B(신념)의 역할로 옳은 것은?",opts:["① 정서적 반응을 일으키는 사건 자체를 변화시킨다","② 사건에 대한 믿음·해석이 정서적·행동적 결과를 결정한다","③ 강화와 처벌을 통해 행동을 조절한다","④ 무의식적 방어기제를 활성화시킨다"],ans:1,ex:"ABC 모형에서 중요한 것은 A(사건) 자체가 아니라 B(신념·해석)로, B가 C(감정·행동 결과)를 결정한다."},
+{ch:"ch9",q:"조작적 조건형성에서 '부적 강화'의 예로 옳은 것은?",opts:["① 칭찬을 주어 행동을 늘린다","② 숙제를 하면 잔소리를 그만한다","③ 규칙을 어기면 꾸중한다","④ 게임 시간을 빼앗아 행동을 줄인다"],ans:1,ex:"부적 강화는 혐오 자극(잔소리)을 제거하여 행동(숙제)을 증가·유지시키는 것이다. 자극을 제거한다는 점에서 처벌과 구분된다."},
+{ch:"ch9",q:"전이와 역전이를 방향에 따라 바르게 짝지은 것은?",opts:["① 전이: 치료자→내담자 / 역전이: 내담자→치료자","② 전이: 내담자→치료자 / 역전이: 치료자→내담자","③ 전이: 부모→자녀 / 역전이: 자녀→부모","④ 둘 다 내담자→치료자 방향"],ans:1,ex:"전이는 내담자가 치료자에게 과거 관계 패턴을 옮겨오는 것이고, 역전이는 치료자가 내담자에게 자신의 무의식적 감정을 느끼고 반응하는 것이다."},
+{ch:"ch9",q:"하향 화살표 기법에서 핵심적으로 반복하는 질문은?",opts:["① '그 행동은 얼마나 자주 일어나나요?'","② '만약 그게 사실이라면, 그게 무엇을 의미하나요?'","③ '어린 시절 어떤 경험이 있었나요?'","④ '그 상황에서 어떻게 행동하셨나요?'"],ans:1,ex:"하향 화살표 기법은 자동적 사고에서 출발하여 '만약 그게 사실이라면 무엇을 의미하나?'를 반복, 중간신념→핵심신념(schema)까지 탐색한다."},
+{ch:"ch9",q:"인지행동가족치료에서 '역기능적 도식(dysfunctional schema)'이란?",opts:["① 가족이 서로 강화하는 행동 패턴","② 자기·타인·관계에 대해 왜곡되고 경직된 신념체계","③ 치료자가 내담자에게 부과하는 규칙","④ 가족 내 의사소통의 반복 패턴"],ans:1,ex:"역기능적 도식은 원가족 경험에서 비롯되는 경우가 많으며, 자기·타인·관계에 대해 왜곡되고 경직된 신념 체계이다."},
+{ch:"ch9",q:"소크라테스식 질문의 핵심 목적은?",opts:["① 내담자에게 올바른 답을 직접 알려주는 것","② 질문을 통해 내담자 스스로 사고를 검토하고 새로운 관점을 발견하도록 돕는 것","③ 치료자의 권위를 강화하는 것","④ 행동 변화를 위한 보상 계획을 수립하는 것"],ans:1,ex:"소크라테스식 질문은 '그 생각의 증거는?', '반대 증거는?' 등으로 내담자가 자동적 사고를 가설로 바라보게 돕고 인지 재구조화의 기초가 된다."},
+{ch:"ch9",q:"공감적 의사소통 훈련에서 화자(speaker)의 규칙으로 옳지 않은 것은?",opts:["① '내가 느끼기에는…'처럼 주관성을 강조한다","② 상대를 비난하지 않고 자신의 감정과 생각만 말한다","③ 상대의 말을 즉시 끊고 반론을 제기한다","④ 부정적 감정 표현 시 긍정적 감정도 함께 표현한다"],ans:2,ex:"화자의 규칙에서 상대를 비난하지 않고, 구체적으로, 부드럽게, 짧게 말하는 것이 핵심이다. 말을 끊고 반론을 제기하는 것은 잘못된 행동이다."},
+{ch:"ch9",q:"프리맥 원리(Premack Principle)를 올바르게 적용한 예는?",opts:["① 숙제를 안 하면 TV를 못 보게 한다","② 숙제를 마치면 좋아하는 TV 시청을 허용한다","③ 떼를 쓰면 무시한다","④ 잘못된 행동에 즉각 꾸중한다"],ans:1,ex:"프리맥 원리는 고확률 행동(TV 시청)을 저확률 행동(숙제)의 강화물로 사용하는 것이다."},
+{ch:"ch9",q:"행동주의 부부치료의 '행동 교환(behavior exchange)'에 대한 설명으로 옳은 것은?",opts:["① 먼저 감정이 변해야 행동이 변한다","② 긍정적 행동을 의도적으로 늘리면 시간이 지나 긍정적 감정도 뒤따른다","③ 배우자의 잘못된 행동에 처벌을 가한다","④ 두 배우자가 동시에 같은 행동을 수행한다"],ans:1,ex:"행동 교환은 현재 감정이 어떻든 긍정적 행동을 먼저 늘리면, 그 행동이 긍정적 감정을 유발·강화한다는 원리에 기반한다."},
+{ch:"ch9",q:"문제해결 훈련의 올바른 5단계 순서는?",opts:["① 문제 정의→해결책 결정→이슈 명확화→제안→시험","② 문제 정의→이슈·욕구 명확화→해결책 제안·논의→결정→시험 기간 설정·수정","③ 해결책 제안→문제 정의→이슈 명확화→결정→시험","④ 이슈 명확화→해결책 제안→문제 정의→결정→시험"],ans:1,ex:"문제해결 훈련 5단계: 문제 정의→이슈·욕구 명확화→해결책 제안·논의→결정→시험 기간 설정·수정"},
+{ch:"ch9",q:"Pavlov의 고전적 조건형성에서 '조건 반응(CR)'이란?",opts:["① 먹이를 보고 침을 흘리는 자연적 반응","② 종소리만으로 침을 흘리는 학습된 반응","③ 종소리 자체","④ 먹이 자체"],ans:1,ex:"조건 반응(CR)은 조건 자극(CS, 종소리)이 반복적 짝짓기를 통해 무조건 자극 없이도 반응을 유발하게 된 학습된 반응이다."},
+{ch:"ch9",q:"인지행동가족치료 목표로 옳지 않은 것은?",opts:["① 부정적 사고패턴 수정","② 가족관계에서 긍정적 상호작용 증가","③ 무의식적 갈등의 통찰과 해소","④ 효과적인 의사소통·문제해결 기술 향상"],ans:2,ex:"무의식적 갈등의 통찰과 해소는 정신분석적 가족치료의 목표이다. 인지행동치료는 인지·행동의 변화, 긍정적 상호작용 증가를 목표로 한다."},
+{ch:"ch9",q:"행동주의 부모훈련에서 '유관계약(contingency contracting)'이란?",opts:["① 부모가 자녀의 행동과 무관하게 보상하는 것","② 아동의 행동 변화에 따라 부모가 보상을 제공하기로 약속하는 계약","③ 자녀가 원하는 보상을 스스로 선택하는 것","④ 치료자가 가족 행동 목표를 설정하는 것"],ans:1,ex:"유관계약은 '아이가 5일 동안 숙제를 완료하면 토요일에 동물원에 간다'처럼 행동 변화와 보상을 명시한 계약이다."},
+{ch:"ch9",q:"다음 중 '이분법적 사고(흑백논리)'의 예로 옳은 것은?",opts:["① '이번에 조금 아쉬웠지만 다음엔 잘 할 수 있어'","② '이건 완전히 실패야. 조금이라도 부족하면 의미가 없어'","③ '상대방이 나를 싫어하는 것 같아'","④ '이건 전부 내 탓이야'"],ans:1,ex:"이분법적 사고는 중간 지점 없이 완전한 성공 또는 완전한 실패로만 판단하는 인지적 오류이다."},
+{ch:"ch9",q:"사회교환이론(Social Exchange Theory)의 핵심 전제는?",opts:["① 사람들은 관계에서 비용을 최대화하려 한다","② 사람들은 보상을 최대화하고 비용을 최소화하여 관계 만족을 높이려 한다","③ 건강한 관계는 보상과 비용이 동등해야 한다","④ 관계 만족은 감정에 의해서만 결정된다"],ans:1,ex:"사회교환이론은 사람들이 관계 속에서 보상(긍정적 상호작용)은 최대화하고 비용(부정적 상호작용)은 최소화하려 한다고 본다."},
+{ch:"ch9",q:"Beck의 인지치료에서 '자동적 사고(automatic thought)'란?",opts:["① 의도적으로 계획한 생각","② 특정 상황에서 의식하지 못한 채 자동적으로 빠르게 떠오르는 생각","③ 깊은 무의식에 억압된 생각","④ 행동이 일어난 후 사후에 발생하는 평가"],ans:1,ex:"자동적 사고는 특정 상황에서 자동적으로 빠르게 떠오르는 생각으로, 핵심신념(schema)에서 비롯되며 감정과 행동에 직접 영향을 미친다."},
+{ch:"ch9",q:"도식(schema) 수정 방법으로 옳지 않은 것은?",opts:["① 도식을 가설로 올려놓고 증거 점검","② 도식에 기반한 이득과 손실 검토","③ 새로운 적응적 신념으로 인지 재구조화","④ 도식을 무조건 수용하고 그에 맞게 행동하도록 격려"],ans:3,ex:"도식 수정은 역기능적 도식을 가설로 검토하고 적응적 신념으로 대체하는 것이다. 도식을 수용하도록 격려하는 것은 치료 목표에 반한다."},
+{ch:"ch9",q:"행동주의 가족치료에서 증상을 보는 관점은?",opts:["① 증상은 무의식적 갈등의 상징이다","② 증상은 조작적 조건형성에 의해 학습된 반응이다","③ 증상은 비합리적 신념의 결과이다","④ 증상은 가족 체계 내 구조 문제를 반영한다"],ans:1,ex:"행동치료자들은 증상에 깊은 상징적 의미가 있다고 보기보다, 증상 그 자체와 그것을 강화·유지시키는 환경의 반응에 초점을 둔다."},
+{ch:"ch9",q:"상호교환계약(quid pro quo contract)의 특징으로 옳은 것은?",opts:["① 한 배우자만 행동 변화를 약속하는 일방적 계약","② 두 배우자가 각자 원하는 특정 행동을 서로 약속하는 상호적 계약","③ 치료자가 행동 목표를 결정하는 계약","④ 부정적 행동에 대한 처벌 계획을 명시하는 계약"],ans:1,ex:"상호교환계약은 한 배우자가 특정 행동을 하기로 약속하는 대신 다른 배우자도 특정 행동을 하기로 약속하여 공정성과 상호성을 높인다."},
+{ch:"ch9",q:"인지행동가족치료에서 공감적 청자의 기술로 옳은 것은?",opts:["① 상대의 말을 끊고 즉각 반론","② 상대의 이야기를 요약해서 이해한 내용을 확인","③ 상대의 감정이 비합리적이면 즉시 교정","④ 자신의 의견을 강하게 먼저 표현"],ans:1,ex:"청자는 '~해서 ~하게 느꼈다는 걸로 들려. 내가 이해한 게 맞아?'처럼 이해한 바를 요약하고 피드백을 받아야 한다."},
+{ch:"ch9",q:"Wolpe의 체계적 둔감법(Systematic Desensitization)의 원리는?",opts:["① 불안 자극에 강제로 반복 노출하여 둔감화","② 불안과 양립할 수 없는 반응(이완)을 불안 유발 자극과 함께 제시하여 불안을 점차 감소","③ 불안을 인지적으로 재해석하여 신념을 변화","④ 불안 행동에 대한 강화를 제거하여 소거"],ans:1,ex:"체계적 둔감법은 고전적 조건형성과 상호억제 원리에 기반하며, 이완 상태에서 단계적으로 불안 자극에 노출하여 불안 반응을 약화시킨다."},
+{ch:"ch9",q:"자동적 사고 기록지의 활용 목적으로 옳은 것은?",opts:["① 행동 빈도와 선행사건만을 기록하는 용도","② 자동적 사고를 알아차리고 인지적 오류를 탐색·수정하는 용도","③ 가족 간 상호작용 패턴을 관찰하는 용도","④ 치료자의 역전이를 기록하는 용도"],ans:1,ex:"자동적 사고 기록지는 상황→자동적 사고→감정→왜곡→대안적 사고→결과를 기록하게 하여 인지적 오류를 탐색하고 수정하는 도구이다."},
+{ch:"ch9",q:"인지행동치료에서 '과잉 일반화(overgeneralization)'의 예는?",opts:["① '이 상황만 실패했어'","② '한 번 실패했으니 나는 항상 실패할 거야'","③ '저 사람이 나를 싫어하는 것 같아'","④ '이 일은 완전히 재앙이야'"],ans:1,ex:"과잉 일반화는 한두 번의 사건을 바탕으로 광범위한 부정적 결론을 내리는 인지적 오류이다."}
+];
+
+var FILL=[
+{ch:"ch8",q:"내담자가 치료자에게 과거 중요한 관계에서 형성된 감정·기대·관계 패턴을 무의식적으로 옮겨오는 현상을 [&nbsp;&nbsp;①&nbsp;&nbsp;]라고 하며, 반대로 치료자가 내담자에게 자신의 무의식적 감정이나 반응을 느끼고 반응하는 것을 [&nbsp;&nbsp;②&nbsp;&nbsp;]라고 한다.",labels:["①","②"],ans:["전이(transference)","역전이(countertransference)"],kw:[["전이","transference"],["역전이","countertransference"]],ex:"전이(transference)는 내담자→치료자, 역전이(countertransference)는 치료자→내담자 방향이다."},
+{ch:"ch8",q:"대상관계이론에서 타인을 전적으로 좋거나 전적으로 나쁜 존재로 이분법화하는 방어기제를 [&nbsp;&nbsp;①&nbsp;&nbsp;]이라 하고, 타인의 특성을 무의식적으로 흡수하여 자아의 일부로 내면화하는 과정을 [&nbsp;&nbsp;②&nbsp;&nbsp;]라고 한다.",labels:["①","②"],ans:["분열(splitting)","내사(introjection)"],kw:[["분열","splitting"],["내사","introjection"]],ex:"분열(splitting)은 이분법적 방어기제, 내사(introjection)는 타인의 특성을 자아로 내면화하는 과정이다."},
+{ch:"ch8",q:"투사(projection)는 자신의 감정·생각을 [&nbsp;&nbsp;①&nbsp;&nbsp;]에게 돌려 지각하는 것이고, 투사적 동일시는 상대방이 실제로 투사된 내용에 맞게 [&nbsp;&nbsp;②&nbsp;&nbsp;]하게 되어 자기충족적 순환이 형성된다.",labels:["①","②"],ans:["타인(상대방)","느끼고 행동"],kw:[["타인","상대"],["행동","느끼"]],ex:"투사는 귀인만, 투사적 동일시는 상대가 실제로 그 역할을 수행하게 되어 자기충족적 순환이 형성된다."},
+{ch:"ch8",q:"Winnicott은 아이의 내적 경험을 인정하고 공감하는 것을 [&nbsp;&nbsp;①&nbsp;&nbsp;]이라 하고, 아이가 안전하게 탐색하고 정체성을 형성할 수 있도록 충분히 안전한 환경을 제공하는 양육을 [&nbsp;&nbsp;②&nbsp;&nbsp;]이라 하였다.",labels:["①","②"],ans:["반영(mirroring)","충분히 좋은 어머니(good-enough mothering)"],kw:[["반영","mirroring"],["충분히 좋은","good-enough","good enough"]],ex:"반영(mirroring)과 충분히 좋은 어머니(good-enough mothering)는 Winnicott의 핵심 개념이다."},
+{ch:"ch8",q:"타인의 특성을 무의식적으로 흡수하여 자아의 일부로 내면화하는 과정을 [&nbsp;&nbsp;①&nbsp;&nbsp;]이라 하며, 자신의 불편한 감정을 타인에게 돌려 지각하는 것을 [&nbsp;&nbsp;②&nbsp;&nbsp;]라고 한다.",labels:["①","②"],ans:["내사(introjection)","투사(projection)"],kw:[["내사","introjection"],["투사","projection"]],ex:"내사(introjection)는 타인→자아 방향이고, 투사(projection)는 자아→타인 방향의 방어기제이다."},
+{ch:"ch8",q:"성인기의 부적응은 충분하지 못한 [&nbsp;&nbsp;①&nbsp;&nbsp;] 과정의 결과일 수 있으며, 의존 욕구가 미충족되거나 감정이 인정받지 못할 때 진짜 감정을 숨기는 [&nbsp;&nbsp;②&nbsp;&nbsp;]가 형성될 수 있다.",labels:["①","②"],ans:["분리-개별화(separation-individuation)","거짓자기(false self)"],kw:[["분리-개별화","individuation","separation"],["거짓자기","false self"]],ex:"분리-개별화 실패 → 거짓자기(false self) 형성. Winnicott의 핵심 개념이다."},
+{ch:"ch9",q:"Ellis의 ABC 모형에서 A는 [&nbsp;&nbsp;①&nbsp;&nbsp;], B는 그 사건에 대한 [&nbsp;&nbsp;②&nbsp;&nbsp;], C는 그 신념으로 나타나는 정서적·행동적 결과이다.",labels:["①","②"],ans:["선행사건(Activating Event)","신념(Beliefs)"],kw:[["선행사건","사건","activating"],["신념","belief","해석"]],ex:"ABC 모형에서 A(사건)가 아닌 B(신념·해석)가 C(결과)를 결정한다는 것이 핵심이다."},
+{ch:"ch9",q:"조작적 조건형성에서 쾌 자극을 제시하여 행동을 증가시키는 것을 [&nbsp;&nbsp;①&nbsp;&nbsp;]이라 하고, 혐오 자극을 제거하여 행동을 증가시키는 것을 [&nbsp;&nbsp;②&nbsp;&nbsp;]이라 한다.",labels:["①","②"],ans:["정적 강화(positive reinforcement)","부적 강화(negative reinforcement)"],kw:[["정적 강화","positive reinforcement"],["부적 강화","negative reinforcement"]],ex:"정적 강화: 쾌 자극 제시로 행동 증가. 부적 강화: 혐오 자극 제거로 행동 증가."},
+{ch:"ch9",q:"인지행동치료에서 자동적 사고의 이면에 있는 핵심신념을 탐색하기 위해 '만약 그게 사실이라면 무엇을 의미하나?'를 반복하는 기법을 [&nbsp;&nbsp;①&nbsp;&nbsp;] 기법이라 하고, 질문을 통해 내담자 스스로 사고를 검토하게 돕는 방법을 [&nbsp;&nbsp;②&nbsp;&nbsp;]식 질문이라 한다.",labels:["①","②"],ans:["하향 화살표","소크라테스"],kw:[["하향 화살표","downward arrow"],["소크라테스","Socratic"]],ex:"하향 화살표 기법: 자동적 사고→핵심신념 탐색. 소크라테스식 질문: 스스로 인지 재구조화 유도."},
+{ch:"ch9",q:"고확률 행동을 저확률 행동의 강화물로 사용하는 원리를 [&nbsp;&nbsp;①&nbsp;&nbsp;] 원리라 하고, 목표 행동을 작은 단계로 나누어 점진적으로 강화하는 기법을 [&nbsp;&nbsp;②&nbsp;&nbsp;]이라 한다.",labels:["①","②"],ans:["프리맥(Premack)","조형(shaping)"],kw:[["프리맥","Premack"],["조형","shaping"]],ex:"프리맥 원리: 좋아하는 행동으로 싫어하는 행동을 강화. 조형: 목표 행동을 단계적으로 강화."},
+{ch:"ch9",q:"자기·타인·관계에 대해 왜곡되고 경직된 신념체계를 [&nbsp;&nbsp;①&nbsp;&nbsp;]이라 하며, 이를 치료할 때 도식을 확정된 사실이 아닌 [&nbsp;&nbsp;②&nbsp;&nbsp;]로 올려놓고 증거를 검토한다.",labels:["①","②"],ans:["역기능적 도식(dysfunctional schema)","가설"],kw:[["도식","schema"],["가설"]],ex:"역기능적 도식은 원가족 경험에서 비롯되며, 치료에서는 이를 가설로 검토하여 적응적 신념으로 대체한다."}
+];
+
+var DESC=[
+{ch:"ch8",q:"전이(transference)의 개념을 설명하고, 치료 장면에서 전이가 갖는 임상적 의미를 서술하시오.",kw:["내담자","치료자","과거","관계 패턴","무의식","감정","기대","통찰","자료"],ans:"전이는 내담자가 치료자에게 과거 중요한 관계에서 형성된 감정·기대·관계 패턴을 무의식적으로 옮겨오는 현상이다. 임상적으로는 내담자의 내면화된 관계 패턴을 직접 관찰할 수 있는 중요한 자료가 되며, 치료자의 적절한 해석을 통해 통찰을 촉진할 수 있다.",ex:"전이: 내담자→치료자. 과거 관계 패턴의 무의식적 재연. 치료적 자료로 활용 → 해석 → 통찰 촉진."},
+{ch:"ch8",q:"투사(projection)와 투사적 동일시(projective identification)의 개념을 구분하여 서술하시오.",kw:["자신","감정","타인","무의식","방어기제","상대방","실제","행동","자기충족","순환"],ans:"투사는 자신의 불편한 감정·생각·특성을 스스로 인식하지 않고 타인에게 돌려 지각하는 무의식적 방어기제이다. 투사적 동일시는 여기서 더 나아가, 상대방이 투사된 내용에 맞게 실제로 느끼고 행동하게 되어 자기충족적 순환이 형성되는 관계적 과정이다.",ex:"투사: 귀인만. 투사적 동일시: 상대가 실제 역할 수행 → 믿음 강화 → 자기충족 순환."},
+{ch:"ch8",q:"역전이(countertransference)란 무엇이며, 치료자가 역전이를 어떻게 다루어야 하는지 서술하시오.",kw:["치료자","내담자","무의식","감정","반응","인식","슈퍼비전","자료"],ans:"역전이는 치료자가 내담자에게 자신의 무의식적 감정이나 반응을 느끼고 반응하는 것이다. 현대 정신분석에서는 역전이를 인식하고 분석하면 내담자의 무의식적 관계 패턴을 이해하는 자료로 활용할 수 있으며, 슈퍼비전을 통해 적절히 다루는 것이 중요하다.",ex:"역전이: 치료자→내담자. 인식·분석 → 내담자 이해 자료로 활용. 슈퍼비전 권장."},
+{ch:"ch8",q:"분열(splitting)의 개념을 설명하고, 이것이 가족 역동에 미치는 영향을 서술하시오.",kw:["이분법","좋거나","나쁜","방어기제","양극화","경직","역할","반복","통합"],ans:"분열은 타인을 전적으로 좋거나 전적으로 나쁜 존재로 이분법적으로 바라보는 방어기제이다. 가족 역동에서 분열은 '문제아 vs 희생자' 같은 양극화를 만들고, 경직된 역할과 반복적 갈등을 강화한다. 치료는 긍정·부정 측면을 함께 볼 수 있도록 통합을 돕는다.",ex:"분열 → 가족 내 양극화 → 경직된 역할·반복 갈등. 치료 목표: 통합."},
+{ch:"ch8",q:"대상관계이론의 핵심 전제와 '대상(object)'의 의미를 서술하시오.",kw:["초기","주양육자","경험","내면화","대상관계","심리적 이미지","표상","현재","관계"],ans:"대상관계이론의 핵심 전제는 현재의 대인관계가 초기 주양육자와의 경험에 기반한다는 것이다. '대상(object)'은 실제 외부 인물이 아니라 경험과 기대를 통해 형성된 자기와 타인에 대한 심리적 이미지(내면화된 표상)를 의미한다.",ex:"대상 = 내면화된 심리적 이미지. 초기 주양육자 경험 → 내면화된 대상관계 → 현재 관계에 영향."},
+{ch:"ch9",q:"Ellis의 ABC 모형을 설명하고, 비합리적 신념이 개인에게 미치는 영향을 서술하시오.",kw:["선행사건","신념","결과","비합리적","정서","행동","왜곡","합리적"],ans:"ABC 모형에서 A는 선행사건, B는 그 사건에 대한 신념·해석, C는 그 신념으로 나타나는 정서·행동적 결과이다. 사건(A) 자체가 아니라 신념(B)이 결과(C)를 결정하므로, 비합리적 신념은 부정적 정서와 부적응적 행동을 유발한다.",ex:"A→B→C. B(신념)가 C(결과) 결정. 비합리적 B → 부정 정서·행동. 합리적 B → 긍정 정서·행동."},
+{ch:"ch9",q:"인지적 왜곡의 개념을 설명하고, 가족 관계에서 나타날 수 있는 인지적 왜곡의 예를 2가지 이상 들어 서술하시오.",kw:["왜곡","신념","과잉 일반화","흑백논리","독심술","개인화","임의적","가족"],ans:"인지적 왜곡은 현실을 정확하게 지각하지 못하게 하는 왜곡된 사고 패턴이다. 가족 관계에서의 예: ①독심술(mind reading) - '배우자가 나를 무시하는 게 분명해' ②과잉 일반화 - '항상 나만 참아야 해' ③흑백논리 - '내 자녀가 이번 시험을 못 봤으니 완전 실패야'.",ex:"인지적 왜곡 8가지: 임의적 추론, 선택적 추상, 과잉 일반화, 확대·축소, 개인화, 이분법적 사고, 낙인찍기, 독심술."},
+{ch:"ch9",q:"소크라테스식 질문의 기능과 활용 방법을 서술하시오.",kw:["질문","스스로","검토","관점","증거","반대","가설","인지 재구조화","자동적 사고"],ans:"소크라테스식 질문은 치료자가 답을 직접 제시하는 것이 아니라, 질문을 통해 내담자 스스로 자신의 사고를 검토하고 새로운 관점을 발견하도록 돕는 기법이다. '그 생각의 증거는?', '반대 증거는?', '다르게 해석할 가능성은?'과 같이 자동적 사고를 가설로 바라보게 하여 인지 재구조화의 기초를 마련한다.",ex:"소크라테스식 질문: 직접 정답 제시 X → 내담자 스스로 검토 → 자동적 사고를 가설로 → 인지 재구조화."},
+{ch:"ch9",q:"공감적 의사소통 훈련에서 화자와 청자의 역할을 각각 서술하시오.",kw:["화자","청자","주관성","비난","감정","요약","피드백","경청","나 전달법"],ans:"화자는 '내가 느끼기에는…'처럼 주관성을 강조하고, 상대를 비난하지 않고 자신의 감정과 생각만 구체적·부드럽게 말해야 한다. 청자는 경청하고 있음을 표현하며, 상대의 이야기를 요약하여 '~라고 이해했는데 맞아?'처럼 피드백을 받아야 하며, 상대의 말을 끊지 않는다.",ex:"화자: 나 전달법·비난 금지·구체적. 청자: 경청·요약·피드백 확인·말 끊지 않기."},
+{ch:"ch9",q:"행동주의 부모훈련에서 사용하는 주요 기법 3가지를 설명하시오.",kw:["조형","shaping","토큰","경제","유관계약","프리맥","단계","강화","보상"],ans:"①조형(shaping): 목표 행동을 작은 단계로 나누어 점진적으로 강화하는 기법. ②토큰 경제(token economy): 목표 행동에 토큰을 주고 원하는 보상으로 교환하게 하는 기법. ③유관계약(contingency contracting): 아동의 행동 변화에 따라 부모가 보상을 제공하기로 약속하는 계약.",ex:"조형(단계적 강화) + 토큰경제(토큰→보상 교환) + 유관계약(행동-보상 계약)."}
+];
+
+var CUR={mc:[],fill:[],desc:[]};
+var scores={ok:0,total:0};
+function sh(a){return [...a].sort(()=>Math.random()-.5);}
+function startQuiz(){
+  var topic=document.getElementById('sel-topic').value;
+  var mode=document.getElementById('sel-set').value;
+  var mc=MC.filter(q=>topic==='all'||q.ch===topic);
+  var fill=FILL.filter(q=>topic==='all'||q.ch===topic);
+  var desc=DESC.filter(q=>topic==='all'||q.ch===topic);
+  if(mode==='rand'){mc=sh(mc).slice(0,18);fill=sh(fill).slice(0,2);desc=sh(desc).slice(0,2);}
+  CUR={mc:mc,fill:fill,desc:desc};
+  scores={ok:0,total:0};
+  document.getElementById('score-area').style.display='block';
+  upSc();render();
+}
+function upSc(){
+  document.getElementById('sc-num').textContent=scores.ok+' / '+scores.total;
+  var p=scores.total>0?Math.round(scores.ok/scores.total*100):0;
+  document.getElementById('sc-pct').textContent=scores.total>0?'('+p+'%)':'';
+}
+function render(){
+  var a=document.getElementById('quiz-area');a.innerHTML='';
+  if(CUR.mc.length>0){var s=document.createElement('div');s.className='sec-label';s.textContent='4지선다 — 객관식';a.appendChild(s);CUR.mc.forEach(function(q,i){a.appendChild(mkMC(q,i));});}
+  if(CUR.fill.length>0){var s=document.createElement('div');s.className='sec-label';s.textContent='빈칸 채우기';a.appendChild(s);CUR.fill.forEach(function(q,i){a.appendChild(mkFill(q,i));});}
+  if(CUR.desc.length>0){var s=document.createElement('div');s.className='sec-label';s.textContent='짧은 서술형';a.appendChild(s);CUR.desc.forEach(function(q,i){a.appendChild(mkDesc(q,i));});}
+}
+function mkMC(q,i){
+  var d=document.createElement('div');d.className='qcard';
+  d.innerHTML='<div class="qmeta"><span class="qn">Q'+(i+1)+'</span><span class="badge b-mc">4지선다</span></div>'+
+    '<div class="qtext">'+q.q+'</div>'+
+    '<div class="opts">'+q.opts.map(function(o,oi){return '<button class="opt" id="mc'+i+'o'+oi+'" onclick="pkMC('+i+','+oi+')">'+o+'</button>';}).join('')+'</div>'+
+    '<div class="fb" id="mc'+i+'fb"></div>';
+  return d;
+}
+function pkMC(i,oi){
+  var q=CUR.mc[i];var bs=q.opts.map(function(_,bi){return document.getElementById('mc'+i+'o'+bi);});
+  if(bs[0].disabled)return;bs.forEach(function(b){b.disabled=true;});
+  var ok=oi===q.ans;scores.total++;if(ok)scores.ok++;upSc();
+  bs.forEach(function(b,bi){if(bi===q.ans)b.classList.add('opt-ok');else if(bi===oi)b.classList.add('opt-bad');});
+  var fb=document.getElementById('mc'+i+'fb');fb.style.display='block';
+  fb.className='fb '+(ok?'fb-ok':'fb-bad');
+  fb.innerHTML=(ok?'✅ 정답!':'❌ 오답. 정답: <strong>'+q.opts[q.ans]+'</strong>')+'<br>'+q.ex;
+}
+function mkFill(q,i){
+  var d=document.createElement('div');d.className='qcard';
+  var num=CUR.mc.length+i+1;
+  var inp=q.labels.map(function(lb,bi){return '<div style="margin-bottom:8px"><span style="font-size:13px;color:var(--text2);display:block;margin-bottom:3px">'+lb+'</span><input type="text" class="ans-input" id="fi'+i+'i'+bi+'" placeholder="'+lb+' 답 입력..."/></div>';}).join('');
+  d.innerHTML='<div class="qmeta"><span class="qn">Q'+num+'</span><span class="badge b-fill">빈칸 채우기</span></div>'+
+    '<div class="qtext">'+q.q+'</div>'+inp+
+    '<button class="sub-btn" id="fi'+i+'btn" onclick="sbFill('+i+')">제출하기</button>'+
+    '<div class="fb" id="fi'+i+'fb"></div>';
+  return d;
+}
+function sbFill(i){
+  var q=CUR.fill[i];var btn=document.getElementById('fi'+i+'btn');if(btn.disabled)return;
+  btn.disabled=true;btn.textContent='채점됨';
+  var ok=0;q.kw.forEach(function(kwArr,bi){var v=(document.getElementById('fi'+i+'i'+bi).value||'').toLowerCase();if(kwArr.some(function(kw){return v.includes(kw.toLowerCase());}))ok++;});
+  var tot=q.labels.length;var rc,ic;
+  if(ok===tot){rc='fb-ok';ic='✅ 정답!';scores.ok++;}
+  else if(ok>0){rc='fb-mid';ic='🟡 부분 정답 ('+ok+'/'+tot+')';scores.ok+=0.5;}
+  else{rc='fb-bad';ic='❌ 오답';}
+  scores.total++;upSc();
+  var fb=document.getElementById('fi'+i+'fb');fb.style.display='block';fb.className='fb '+rc;
+  fb.innerHTML=ic+'<br>모범 답안: <strong>'+q.ans.join(' / ')+'</strong><br>'+q.ex;
+}
+function mkDesc(q,i){
+  var d=document.createElement('div');d.className='qcard';
+  var num=CUR.mc.length+CUR.fill.length+i+1;
+  d.innerHTML='<div class="qmeta"><span class="qn">Q'+num+'</span><span class="badge b-desc">서술형</span></div>'+
+    '<div class="qtext">'+q.q+'</div>'+
+    '<textarea class="ans-input" id="de'+i+'ta" rows="5" placeholder="여기에 서술해줘..."></textarea>'+
+    '<button class="sub-btn" id="de'+i+'btn" onclick="sbDesc('+i+')">제출하기</button>'+
+    '<div class="fb" id="de'+i+'fb"></div>';
+  return d;
+}
+function sbDesc(i){
+  var q=CUR.desc[i];var btn=document.getElementById('de'+i+'btn');if(btn.disabled)return;
+  btn.disabled=true;btn.textContent='채점됨';
+  var v=(document.getElementById('de'+i+'ta').value||'').toLowerCase();
+  var hit=q.kw.filter(function(kw){return v.includes(kw.toLowerCase());}).length;
+  var tot=q.kw.length;var r=hit/tot;var rc,ic;
+  if(r>=0.6){rc='fb-ok';ic='✅ 핵심 키워드 충분히 포함! ('+hit+'/'+tot+')';scores.ok++;}
+  else if(r>=0.35){rc='fb-mid';ic='🟡 부분 포함 ('+hit+'/'+tot+' 키워드)';scores.ok+=0.5;}
+  else{rc='fb-bad';ic='❌ 키워드 부족 ('+hit+'/'+tot+')';}
+  scores.total++;upSc();
+  var fb=document.getElementById('de'+i+'fb');fb.style.display='block';fb.className='fb '+rc;
+  fb.innerHTML=ic+'<br><strong>모범 답안:</strong> '+q.ans+'<br><small style="opacity:.75">체크 키워드: '+q.kw.join(', ')+'</small>';
+}
+</script>
+</body>
+</html>
